@@ -46,12 +46,12 @@ function LoginForm() {
             <input type="password" name="password" id="password" className="p-2 rounded-2xl border-2 border-main" onChange={handleOnChangePassword} />
         </div>
         <div className="flex justify-end">
-            <span className=" inline-block mb-8 text-left text-xs cursor-pointer underline">Has olvidado tu contraseña</span>
+            <span className=" inline-block mb-8 text-left text-xs cursor-pointer underline font-semibold">Has olvidado tu contraseña</span>
         </div>
         <input type="submit" value="Iniciar Sesion" className="mb-6 p-2 bg-main text-white w-full rounded-2xl cursor-pointer"  />
         <div className=" flex justify-center items-center gap-4 p-2 bg-white text-main border-2 border-main w-full rounded-2xl cursor-pointer">
             <FaGoogle className=" " />
-            <p>Iniciar Sesion google</p>
+            <p className="font-bold">Iniciar Sesion google</p>
             
         </div>
     </form>
