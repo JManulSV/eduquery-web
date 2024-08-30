@@ -1,14 +1,17 @@
 "use client"
-import { apiClient } from "@/app/lib/axiosInstance";
+import { apiClient } from "@/app/services/axiosInstance";
 import { ChangeEvent, useState } from "react"
 import { FaGoogle } from "react-icons/fa"
+import SubmitButton from "./SubmitButton";
+import { loginUser } from "@/app/services/authService";
+import { useRouter } from "next/navigation";
 
 function LoginForm() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState('');
-    const [status, setStatus] = useState(0);
+    const route = useRouter();
 
     const handleOnChangeEmail = (e:ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -17,25 +20,8 @@ function LoginForm() {
         setPassword(e.target.value);
     }
 
-    const handleOnSubmit = async(e:any) => {
-        e.preventDefault();
-        try {
-            const response = await apiClient.post('/auth/login', {email, password});
-            setStatus(response.status);
-            console.log(response);
-        } catch (error:any) {
-            if (error.response && error.response.status === 401) { // Accede al código de estado desde el error
-                setErrors('Las credenciales no son correctas :(');
-            } else {
-                setErrors('Ocurrió un error inesperado.');
-            }
-        }
-        console.log(status);
-    }
-
-
   return (
-    <form onSubmit={handleOnSubmit} className="mt-10">
+    <form onSubmit={(event) => loginUser(email, password, event, setErrors, route)} className="mt-10">
         <div className="flex flex-col gap-2 mb-4">
             <label htmlFor="email" className="text-sm">Email</label>
             <input type="email" name="email" id="email" className={`p-2 rounded-2xl border-2 ${errors ? 'border-red-600 bg-red-100':'border-main'}`} onChange={handleOnChangeEmail} />
@@ -48,7 +34,7 @@ function LoginForm() {
         <div className="flex justify-end">
             <span className=" inline-block mb-8 text-left text-xs cursor-pointer underline font-semibold">Has olvidado tu contraseña</span>
         </div>
-        <input type="submit" value="Iniciar Sesion" className="mb-6 p-2 bg-main text-white w-full rounded-2xl cursor-pointer"  />
+        <SubmitButton value={'Iniciar Sesion'} />
         <div className=" flex justify-center items-center gap-4 p-2 bg-white text-main border-2 border-main w-full rounded-2xl cursor-pointer">
             <FaGoogle className=" " />
             <p className="font-bold">Iniciar Sesion google</p>
