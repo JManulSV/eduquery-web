@@ -13,6 +13,7 @@ export const loginUser = async (
   event.preventDefault();
   try {
     const response = await apiClient.post("/auth/login", { email, password });
+    const token = response.data.token;
     router.push('/')
     console.log(response);
   } catch (error: any) {
@@ -31,7 +32,6 @@ export const registerUser = async (
 ) => {
   try {
     const response = await apiClient.post("/auth/register", data);
-    console.log(response);
     router.push('/auth/login');
   } catch (error: any) {
     if (error?.response?.status === 400 && error?.response?.data?.data) {

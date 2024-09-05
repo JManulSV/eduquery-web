@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import SessionAuthProvider from "@/context/SessionAuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="">
-      <body className={`${inter.className} dark:bg-main`}>{children}</body>
+      <body className={`${inter.className} dark:bg-main`}>
+        <SessionAuthProvider>{children}</SessionAuthProvider>
+        </body>
     </html>
   );
 }
