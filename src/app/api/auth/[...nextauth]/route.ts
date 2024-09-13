@@ -1,4 +1,4 @@
-import { apiClient } from "@/app/services/axiosInstance";
+import { apiClient } from "@/services/axiosInstance";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -13,7 +13,7 @@ const handler = NextAuth({
       async authorize(credentials) {
         
         const response = await apiClient.post("/auth/login", credentials);
-        const user = response.data.token;
+        const user = response.data.user;
 
         if (user.error) throw user;
 

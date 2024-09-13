@@ -5,7 +5,6 @@ import { FaUser } from "react-icons/fa";
 
 function Navbar() {
   const { data: session } = useSession();
-  console.log(session);
   return (
     <nav className="w-full bg-red-300 flex justify-between items-baseline p-4">
       <section>

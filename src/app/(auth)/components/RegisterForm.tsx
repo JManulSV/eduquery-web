@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import SubmitButton from "./SubmitButton";
 import { useForm } from "react-hook-form";
 import { registerDataForm } from "@/types/auth";
-import { registerUser } from "@/app/services/authService";
+import { registerUser } from "@/services/authService";
 import { useRouter } from "next/navigation";
 
 function RegisterForm() {

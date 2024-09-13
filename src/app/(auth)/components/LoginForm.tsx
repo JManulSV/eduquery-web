@@ -2,7 +2,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import SubmitButton from "./SubmitButton";
-import { loginUser } from "@/app/services/authService";
+import { loginUser } from "@/services/authService";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 

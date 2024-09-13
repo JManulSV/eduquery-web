@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Roboto } from "next/font/google";
 import "./globals.css";
 import SessionAuthProvider from "@/context/SessionAuthProvider";
+import Navbar from "./components/layout/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({ subsets: ['latin'], weight: ['400', '700'] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,8 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="">
-      <body className={`${inter.className} dark:bg-main`}>
-        <SessionAuthProvider>{children}</SessionAuthProvider>
+      <body className={`${roboto.className} dark:bg-main`}>
+        <SessionAuthProvider>
+          {/* <Navbar /> */}
+          {children}
+          </SessionAuthProvider>
         </body>
     </html>
   );
