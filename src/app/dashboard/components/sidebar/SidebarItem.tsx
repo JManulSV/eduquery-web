@@ -9,9 +9,8 @@ export interface SidebarItemProps{
 }
 
 export default function SidebarItem({title, logo, href, expanded, actualPath}: SidebarItemProps) {
-
   return (
-    <Link href={href} className={`flex items-center  text-gray-700 ${expanded ? 'gap-4':'flex-col gap-2'} ${actualPath === href ? ' text-blue-500' : ''}`}>
+    <Link href={href} className={`flex items-center   ${expanded ? 'gap-4':'flex-col gap-2'} ${actualPath === href ? ' text-blue-500' : 'text-gray-700'}`}>
         <div className="text-xl">{logo}</div>
         <p className={ `${expanded ? 'text-md': 'text-sm'}` }>{title}</p>
     </Link>

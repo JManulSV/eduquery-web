@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Roboto } from "next/font/google";
 import "./globals.css";
 import SessionAuthProvider from "@/context/SessionAuthProvider";
-import Navbar from "./components/layout/Navbar";
+import Navbar from "../components/layout/Navbar";
 
 const roboto = Roboto({ subsets: ['latin'], weight: ['400', '700'] });
 
