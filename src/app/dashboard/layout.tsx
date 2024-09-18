@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import Sidebar from "./components/sidebar/Sidebar";
+import Navbar from "./components/sidebar/Navbar";
 
 interface LayoutProps {
   children: ReactNode;
@@ -7,10 +8,13 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <main className="flex">
+    <main className="flex h-screen">
       <Sidebar />
-      <div className="bg-gray-200 w-full p-8">
-        {children}
+      <div className="flex flex-col flex-1">
+        <Navbar />
+        <div className="bg-gray-100 flex-1 p-8">
+          {children}
+        </div>
       </div>
     </main>
   );

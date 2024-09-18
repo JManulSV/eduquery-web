@@ -19,21 +19,21 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   const data = [
-    { title: "Inicio", logo: <FaHouse />, href: "/dashboard", expanded },
-    { title: "Salones", logo: <FaSchoolFlag />, href: "/classrooms", expanded },
-    { title: "Alumnos", logo: <FaChildren />, href: "/students", expanded },
-    { title: "Materias", logo: <FaDiagramProject />, href: "/subjects", expanded },
-    { title: "Tareas", logo: <FaBook />, href: "/homework", expanded },
+    { title: "Inicio", logo: <FaHouse />, href: "/dashboard", expanded, actualPath: pathname},
+    { title: "Salones", logo: <FaSchoolFlag />, href: "/classrooms", expanded, actualPath: pathname },
+    { title: "Alumnos", logo: <FaChildren />, href: "/students", expanded, actualPath: pathname },
+    { title: "Materias", logo: <FaDiagramProject />, href: "/subjects", expanded, actualPath: pathname },
+    { title: "Tareas", logo: <FaBook />, href: "/homework", expanded, actualPath: pathname },
   ];
 
   const data2 = [
-    { title: "Configuracion", logo: <FaGear />, href: "/settings", expanded },
+    { title: "Configuracion", logo: <FaGear />, href: "/settings", expanded, actualPath: pathname },
   ];
 
   console.log(pathname);
   return (
     <aside
-      className={`flex flex-col justify-between h-screen py-10 px-8 transition-all duration-300 ${
+      className={`flex flex-col justify-between h-screen pt-5 pb-8 px-8 transition-all duration-300 border-r-2 border-gray-200${
         expanded ? "w-[250px]" : "w-[100px]"
       }`}
     >
