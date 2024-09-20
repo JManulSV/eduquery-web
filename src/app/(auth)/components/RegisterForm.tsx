@@ -1,10 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SubmitButton from "./SubmitButton";
 import { useForm } from "react-hook-form";
 import { registerDataForm } from "@/types/auth";
 import { registerUser } from "@/services/authService";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 function RegisterForm() {
   const {
@@ -16,9 +17,17 @@ function RegisterForm() {
 
   const router = useRouter();
   const [error, setError] = useState("");
+  const { data: session } = useSession();
   const onSubmit = async (data:registerDataForm) => {
    registerUser(data, setError, router);
   };
+
+  useEffect(() => {
+    if(session){
+      router.push("/dashboard");
+    }
+  }, [session])
+  
 
   const registerOptions = {
     name: {

@@ -1,17 +1,24 @@
 "use client";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import SubmitButton from "./SubmitButton";
 import { loginUser } from "@/services/authService";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [errors, setErrors] = useState<string[]>([]);
   const [errors, setErrors] = useState<string>();
   const router = useRouter();
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if(session){
+      router.push("/dashboard");
+    }
+  }, [session])
+  
 
   const handleOnChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -32,7 +39,6 @@ function LoginForm() {
       if (responseNextAuth?.status === 401) {
         setErrors("Las credenciales no son validas");
       }
-      //setErrors(responseNextAuth.error.split(","));
       return;
     }
 
