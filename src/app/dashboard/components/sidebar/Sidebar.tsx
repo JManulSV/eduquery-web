@@ -20,7 +20,7 @@ export default function Sidebar() {
 
   const data = [
     { title: "Inicio", logo: <FaHouse />, href: "/dashboard", expanded, actualPath: pathname},
-    { title: "Salones", logo: <FaSchoolFlag />, href: "/classrooms", expanded, actualPath: pathname },
+    { title: "Salones", logo: <FaSchoolFlag />, href: "/dashboard/classrooms", expanded, actualPath: pathname },
     { title: "Alumnos", logo: <FaChildren />, href: "/students", expanded, actualPath: pathname },
     { title: "Materias", logo: <FaDiagramProject />, href: "/subjects", expanded, actualPath: pathname },
     { title: "Tareas", logo: <FaBook />, href: "/homework", expanded, actualPath: pathname },

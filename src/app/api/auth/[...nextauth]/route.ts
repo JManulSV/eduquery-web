@@ -13,11 +13,11 @@ const handler = NextAuth({
       async authorize(credentials) {
         
         const response = await apiClient.post("/auth/login", credentials);
-        const user = response.data.user;
+        const { user, token } = response.data;
 
         if (user.error) throw user;
 
-        return user;
+        return { ...user, token };
       },
     }),
   ],
