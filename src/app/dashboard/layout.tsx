@@ -12,7 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Sidebar />
       <div className="flex flex-col flex-1">
         <Navbar />
-        <div className="bg-gray-100 flex-1 p-8">
+        <div className="bg-gray-100 flex-1 p-2">
           {children}
         </div>
       </div>
