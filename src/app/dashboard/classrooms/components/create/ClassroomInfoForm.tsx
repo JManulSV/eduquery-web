@@ -1,24 +1,36 @@
 "use client";
+import { ClassroomCreate } from "@/types/create";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 interface Props {
   setData: Function;
   nextStep: Function;
-  formData: {}
+  formData: ClassroomCreate
 }
 
 function ClassroomInfoForm({ setData, nextStep, formData }: Props) {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm();
+  const router = useRouter();
   const onSubmit = (data: any) => {
-    setData({...data});
-    console.log(formData)
+    setData({...formData, ...data});
     nextStep();
   };
+
+  const returnPage = () => {
+    router.push('/dashboard');
+  }
+
+  useEffect(() => {
+    reset({title: formData.title, description: formData.description});
+  }, [formData])
+  
 
   return (
     <form
@@ -73,7 +85,7 @@ function ClassroomInfoForm({ setData, nextStep, formData }: Props) {
         </div>
       </div>
       <div className="flex justify-between p-4">
-        <button className="border border-main rounded-md p-2 hover:font-bold">
+        <button className="border border-main rounded-md p-2 hover:font-bold" onClick={returnPage}>
           Atras
         </button>
         <input
