@@ -8,7 +8,7 @@ import { ClassroomCreate } from '@/types/create';
 
 function MultistepsForm() {
     const [step, setStep] = useState<number>(0);
-    const [formData, setFormData] = useState<ClassroomCreate>({title:'', description:'', id_sheet:''});
+    const [formData, setFormData] = useState<ClassroomCreate>({name:'', description:'', sheet_id:''});
 
     const nextStep = () => {
         setStep(step + 1);

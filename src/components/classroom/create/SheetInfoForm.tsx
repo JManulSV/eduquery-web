@@ -21,7 +21,7 @@ export default function SheetInfoForm({setData, nextStep, formData, prevStep}:Pr
     setData({...formData, ...data});
   };
   useEffect(() => {
-    reset({id_sheet: formData.id_sheet});
+    reset({id_sheet: formData.sheet_id});
   }, [formData])
 
   return (
@@ -39,19 +39,19 @@ export default function SheetInfoForm({setData, nextStep, formData, prevStep}:Pr
       </div>
       <form className="mt-10" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-3">
-          <label htmlFor="id_sheet">Id de sheet</label>
+          <label htmlFor="sheet_id">Id de sheet</label>
           <input
             type="text"
-            id="id_sheet"
-            {...register('id_sheet', {required: "No puede estar vacio este cambpo", maxLength:{value: 15, message:"El codigo no puede se mayor a 15 digitos"}})}
+            id="sheet_id"
+            {...register('sheet_id', {required: "No puede estar vacio este cambpo", maxLength:{value: 15, message:"El codigo no puede se mayor a 15 digitos"}})}
             className={`px-2 py-1 border-2 rounded-lg ${
               errors.id_sheet
                 ? "border-red-500 text-red-500"
                 : "border-gray-300"
             }`}
           />
-          {errors.id_sheet && typeof errors.id_sheet.message === "string" && (
-            <span className="text-red-500 text-sm">{errors.id_sheet.message}</span>
+          {errors.sheet_id && typeof errors.sheet_id.message === "string" && (
+            <span className="text-red-500 text-sm">{errors.sheet_id.message}</span>
           )}
         </div>
         <div className="mt-10 mb-10">

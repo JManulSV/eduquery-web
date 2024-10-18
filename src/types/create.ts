@@ -1,5 +1,5 @@
 export interface ClassroomCreate{
-    title: string|null,
+    name: string|null,
     description: string|null,
-    id_sheet: string|null,
+    sheet_id: string|null,
 }

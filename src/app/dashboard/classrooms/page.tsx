@@ -1,8 +1,8 @@
 "use client";
+import NoClassroomMessage from "@/components/classroom/NoClassroomMessage";
 import { apiClient } from "@/services/axiosInstance";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import NoClassroomMessage from "./components/NoClassroomMessage";
 
 function ClassroomPage() {
   const { data: session, status } = useSession();
@@ -32,6 +32,7 @@ function ClassroomPage() {
           setLoading(false);
         } catch (err) {
           setError('Error al cargar los salones.');
+          console.error(err);
           setLoading(false);
         }
       };

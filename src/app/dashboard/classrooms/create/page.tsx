@@ -1,4 +1,5 @@
-import MultistepsForm from '../components/create/MultistepsForm'
+import MultistepsForm from "@/components/classroom/create/MultistepsForm"
+
 
 function page() {
   return (

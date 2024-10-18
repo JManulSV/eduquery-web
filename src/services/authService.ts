@@ -32,7 +32,7 @@ export const registerUser = async (
 ) => {
   try {
     const response = await apiClient.post("/auth/register", data);
-    router.push('/auth/login');
+    router.push('/login');
   } catch (error: any) {
     if (error?.response?.status === 400 && error?.response?.data?.data) {
       const errorMessages = error.response.data.data as {

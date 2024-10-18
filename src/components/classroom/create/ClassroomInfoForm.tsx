@@ -28,7 +28,7 @@ function ClassroomInfoForm({ setData, nextStep, formData }: Props) {
   }
 
   useEffect(() => {
-    reset({title: formData.title, description: formData.description});
+    reset({name: formData.name, description: formData.description});
   }, [formData])
   
 
@@ -39,15 +39,15 @@ function ClassroomInfoForm({ setData, nextStep, formData }: Props) {
     >
       <div className="flex flex-col gap-10">
         <div className="flex flex-col gap-3">
-          <label htmlFor="title">Nombre del salon: </label>
+          <label htmlFor="name">Nombre del salon: </label>
           <input
             type="text"
-            id="title"
+            id="name"
             className={`px-2 py-1 border-2 rounded-lg ${
-              errors.title ? "border-red-500 text-red-500" : "border-gray-300"
+              errors.name ? "border-red-500 text-red-500" : "border-gray-300"
             }`}
             placeholder="Ingresa un nombre para el salón. Ejemplo: 2A (2025)"
-            {...register("title", {
+            {...register("name", {
               required: "Es requerido agregar un nombre",
               maxLength: {
                 value: 50,
@@ -55,8 +55,8 @@ function ClassroomInfoForm({ setData, nextStep, formData }: Props) {
               },
             })}
           />
-          {errors.title && typeof errors.title.message === "string" && (
-            <span className="text-red-500 text-sm">{errors.title.message}</span>
+          {errors.name && typeof errors.name.message === "string" && (
+            <span className="text-red-500 text-sm">{errors.name.message}</span>
           )}
         </div>
         <div className="flex flex-col gap-3">

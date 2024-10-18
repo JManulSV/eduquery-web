@@ -1,3 +1,4 @@
+import { apiClient } from "@/services/axiosInstance";
 import { ClassroomCreate } from "@/types/create";
 import Avvvatars from "avvvatars-react";
 import { useSession } from "next-auth/react";
@@ -12,12 +13,53 @@ function Summary({ data, prevStep }: props) {
   const { data: session } = useSession();
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
+  const [classroomCreated, setClassroomCreated] = useState('');
   useEffect(() => {
     if (session?.user?.name && session?.user?.email) {
       setUserName(session.user.name);
       setUserEmail(session.user.email);
     }
   }, [session]);
+
+  const saveSheet = async () => {
+    try {
+      const response = await apiClient.post(
+        "/sheets",
+        {
+          'classroom': data.name,
+          sheet_id: data.sheet_id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${session?.user?.token}`,
+          },
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.error("Error al guardar la hoja de calculo:", error);
+    }
+    
+    
+  };
+
+  const saveClassroom = async () => {
+    try {
+      const response = await apiClient.post(
+        "/classrooms",
+        { ...data },
+        {
+          headers: {
+            Authorization: `Bearer ${session?.user?.token}`,
+          },
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.error("Error al guardar el aula:", error);
+    }
+  };
+
   return (
     <div>
       <h2 className="text-2xl mb-8 mt-4">Resumen:</h2>
@@ -32,7 +74,7 @@ function Summary({ data, prevStep }: props) {
         <section className="p-4 flex flex-col gap-4">
           <div>
             <span className="font-bold">Nombre del salon:</span>
-            <p>{data.title}</p>
+            <p>{data.name}</p>
           </div>
           <div>
             <span className="font-bold">Descripcion del salon:</span>
@@ -40,7 +82,7 @@ function Summary({ data, prevStep }: props) {
           </div>
           <div>
             <span className="font-bold">Id de sheet:</span>
-            <p>{data.id_sheet}</p>
+            <p>{data.sheet_id}</p>
           </div>
         </section>
       </div>
@@ -55,6 +97,7 @@ function Summary({ data, prevStep }: props) {
           type="submit"
           className="bg-main p-2 text-white rounded-md hover:bg-black cursor-pointer"
           value={"Crear Salon"}
+          onClick={() => saveClassroom()}
         />
       </div>
     </div>
