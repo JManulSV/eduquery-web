@@ -13,6 +13,7 @@ import {
 } from "react-icons/fa6";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ClassroomGrid from "./classroom/ClassroomGrid";
 
 export default function Sidebar() {
   const [expanded, setExpanded] = useState(true);
@@ -58,6 +59,9 @@ export default function Sidebar() {
               <FaAnglesRight className="text-sm text-gray-100" />
             )}
           </div>
+        </section>
+        <section>
+          <ClassroomGrid />
         </section>
         <section>
           <SideBarItemGrid
