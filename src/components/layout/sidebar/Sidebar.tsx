@@ -34,8 +34,8 @@ export default function Sidebar() {
   console.log(pathname);
   return (
     <aside
-      className={`flex flex-col justify-between h-screen pt-5 pb-8 px-8 transition-all duration-300 border-r-2 border-gray-200${
-        expanded ? "w-[250px]" : "w-[100px]"
+      className={`flex flex-col justify-between h-screen pt-5 pb-8  transition-all duration-500 border-r-2 overflow-auto border-gray-200${
+        expanded ? "w-[250px] px-8" : "w-[100px] p-0"
       }`}
     >
       <div className="flex flex-col gap-14">
@@ -61,7 +61,7 @@ export default function Sidebar() {
           </div>
         </section>
         <section>
-          <ClassroomGrid />
+          <ClassroomGrid expanded={expanded} />
         </section>
         <section>
           <SideBarItemGrid

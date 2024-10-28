@@ -15,6 +15,7 @@ export const getClassroomsLocalStorage = async (token:string) => {
       throw error;
     }
   } else {
-    return JSON.parse(localStorage.getItem("classroom"));
+    const classrooms = localStorage.getItem("classroom");
+    return classrooms ? JSON.parse(classrooms) : [];
   }
 };

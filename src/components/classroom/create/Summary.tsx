@@ -2,6 +2,7 @@ import { apiClient } from "@/services/axiosInstance";
 import { ClassroomCreate } from "@/types/create";
 import Avvvatars from "avvvatars-react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 interface props {
@@ -13,35 +14,14 @@ function Summary({ data, prevStep }: props) {
   const { data: session } = useSession();
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  const [classroomCreated, setClassroomCreated] = useState('');
+  const router = useRouter();
+  
   useEffect(() => {
     if (session?.user?.name && session?.user?.email) {
       setUserName(session.user.name);
       setUserEmail(session.user.email);
     }
   }, [session]);
-
-  const saveSheet = async () => {
-    try {
-      const response = await apiClient.post(
-        "/sheets",
-        {
-          'classroom': data.name,
-          sheet_id: data.sheet_id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${session?.user?.token}`,
-          },
-        }
-      );
-      console.log(response);
-    } catch (error) {
-      console.error("Error al guardar la hoja de calculo:", error);
-    }
-    
-    
-  };
 
   const saveClassroom = async () => {
     try {
@@ -55,6 +35,8 @@ function Summary({ data, prevStep }: props) {
         }
       );
       console.log(response);
+      localStorage.removeItem('classroom');
+      router.push(`/dashboard/classrooms/${response.data.data.classroom.id}`);
     } catch (error) {
       console.error("Error al guardar el aula:", error);
     }
