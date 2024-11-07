@@ -25,9 +25,6 @@ export default function Sidebar() {
     { title: "Alumnos", logo: <FaChildren />, href: "/students", expanded, actualPath: pathname },
     { title: "Materias", logo: <FaDiagramProject />, href: "/subjects", expanded, actualPath: pathname },
     { title: "Tareas", logo: <FaBook />, href: "/homework", expanded, actualPath: pathname },
-  ];
-
-  const data2 = [
     { title: "Configuracion", logo: <FaGear />, href: "/settings", expanded, actualPath: pathname },
   ];
 
@@ -71,13 +68,6 @@ export default function Sidebar() {
           />
         </section>
       </div>
-      <section>
-        <SideBarItemGrid
-          data={data2}
-          expanded={expanded}
-          actualpath={pathname}
-        />
-      </section>
     </aside>
   );
 }

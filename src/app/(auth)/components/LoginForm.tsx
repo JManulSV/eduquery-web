@@ -22,6 +22,9 @@ function LoginForm() {
 
   const handleOnChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+    if (errors) {
+      setErrors('');
+    }
   };
   const handleOnChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
